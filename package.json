@@ -1,0 +1,57 @@
+{
+	"name": "themeslug",
+	"version": "0.2.0",
+	"description": "themedescription",
+	"author": "themeauthor",
+	"license": "GPL-2.0-or-later",
+	"keywords": [],
+	"homepage": "themerepourl",
+	"repository": {
+		"type": "git",
+		"url": "git+themerepourl.git"
+	},
+	"bugs": "themerepourl/issues",
+	"type": "module",
+	"private": true,
+	"main": "",
+	"devDependencies": {
+		"concurrently": "9.2.1",
+		"husky": "9.1.7",
+		"lint-staged": "16.1.6",
+		"postcss": "8.5.6",
+		"postcss-cli": "11.0.1",
+		"postcss-custom-media": "11.0.6",
+		"postcss-discard-comments": "7.0.4",
+		"postcss-import": "16.1.1",
+		"postcss-import-ext-glob": "2.1.1",
+		"postcss-nesting": "13.0.2",
+		"prettier": "3.6.2",
+		"rimraf": "6.0.1",
+		"stylelint": "16.24.0",
+		"stylelint-config-recess-order": "7.3.0",
+		"stylelint-config-standard": "39.0.0",
+		"stylelint-order": "7.0.0",
+		"svgo": "4.0.0"
+	},
+	"scripts": {
+		"build": "npm run build:css && npm run build:svg",
+		"build:css": "rimraf build/styles && postcss src/styles/global.css --dir build/styles",
+		"format": "prettier --write . && npm run format:svg",
+		"format:check": "prettier --check .",
+		"format:svg": "svgo --folder assets/svg",
+		"lint": "npm run lint:css",
+		"lint:css": "stylelint --formatter verbose \"**/*.css\"",
+		"lint:css:fix": "npm run lint:css -- --fix",
+		"prepare": "husky",
+		"start": "npm run build:css -- --watch"
+	},
+	"lint-staged": {
+		"*.css": [
+			"stylelint",
+			"prettier --write"
+		],
+		"!(*.css)": [
+			"prettier --write --ignore-unknown"
+		]
+	}
+}

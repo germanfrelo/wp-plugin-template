@@ -9,10 +9,8 @@
 /.prettierignore
 /.vscode/
 /node_modules/
-/package.json
 /package-lock.json
-/postcss.config.js
+/package.json
 /prettier.config.js
 /src/
 /stylelint.config.js
-/svgo.config.js
